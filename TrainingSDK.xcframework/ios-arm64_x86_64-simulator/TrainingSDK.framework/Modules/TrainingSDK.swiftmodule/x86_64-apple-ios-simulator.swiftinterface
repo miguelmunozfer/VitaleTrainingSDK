@@ -42,7 +42,7 @@ public struct WorkoutSummary : Swift.Codable {
   public var alternativeClassAvailable: Swift.Bool?
   public var kcal: Swift.String?
   public var descripcion: Swift.String?
-  public var duration: Swift.Int?
+  public var duration: Swift.String?
   public var url: Swift.String?
   public var day: Swift.Int?
   public func encode(to encoder: Swift.Encoder) throws
@@ -55,12 +55,12 @@ public struct WorkoutSummary : Swift.Codable {
   public func logout()
   public func setMainColor(color: Swift.String)
   public func showVirtualPT()
-  public func updateProfile(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?)
+  public func updateProfile(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, basalMetabolism: Swift.Int? = nil)
   public func showWorkoutPlan()
   public func getWorkoutPlan(_ completion: @escaping ((UIKit.UIViewController) -> ()))
   public func getStatsViewController(_ completion: @escaping ((UIKit.UIViewController) -> ()))
   public func getHelpController() -> UIKit.UIViewController
-  public func showTrainingProfileWith(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, _ completion: @escaping ((UIKit.UIViewController?) -> ()))
+  public func showTrainingProfileWith(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, basalMetabolism: Swift.Int? = nil, _ completion: @escaping ((UIKit.UIViewController?) -> ()))
   public func getTodayStats(_ completion: @escaping ((TrainingSDK.Stat?) -> ()))
   public func showWefitter(_ completion: @escaping ((UIKit.UIViewController) -> ()))
   public func getTodayWorkout(_ completion: @escaping ((TrainingSDK.WorkoutSummary?) -> ()))
