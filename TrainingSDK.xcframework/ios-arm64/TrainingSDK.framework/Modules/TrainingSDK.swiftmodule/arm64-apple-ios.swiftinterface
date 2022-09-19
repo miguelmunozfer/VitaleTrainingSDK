@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name TrainingSDK
 import AVFoundation
 import AVKit
@@ -32,6 +32,16 @@ public class Stat : Swift.Codable {
   public func encode(to encoder: Swift.Encoder) throws
   required public init(from decoder: Swift.Decoder) throws
 }
+public enum TrainingType : Swift.Codable {
+  case diabetes, bariatrico
+  public static func == (a: TrainingSDK.TrainingType, b: TrainingSDK.TrainingType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
 extension UIKit.UIFont {
   public static func jbs_registerFont(withFilenameString filenameString: Swift.String, bundle: Foundation.Bundle)
 }
@@ -55,11 +65,12 @@ public struct WorkoutSummary : Swift.Codable {
   public func logout()
   public func setMainColor(color: Swift.String)
   public func showVirtualPT()
-  public func updateProfile(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, basalMetabolism: Swift.Int? = nil)
+  public func updateProfile(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, basalMetabolism: Swift.Int? = nil, operationDate: Foundation.Date? = nil, activityLevel: Swift.Int? = 1, generateProfile: Swift.Bool = false)
   public func showWorkoutPlan()
   public func getWorkoutPlan(_ completion: @escaping ((UIKit.UIViewController) -> ()))
   public func getStatsViewController(_ completion: @escaping ((UIKit.UIViewController) -> ()))
   public func getHelpController() -> UIKit.UIViewController
+  public func showTrainingProfileWith(_ completion: @escaping ((UIKit.UIViewController?) -> ()))
   public func showTrainingProfileWith(user: Swift.String, sex: Swift.String?, height: Swift.Int?, weigth: Swift.Int?, birthDate: Foundation.Date?, level: Swift.Int?, basalMetabolism: Swift.Int? = nil, _ completion: @escaping ((UIKit.UIViewController?) -> ()))
   public func getTodayStats(_ completion: @escaping ((TrainingSDK.Stat?) -> ()))
   public func showWefitter(_ completion: @escaping ((UIKit.UIViewController) -> ()))
@@ -113,6 +124,8 @@ public enum HCVimeoVideoQuality : Swift.String {
   @objc override dynamic public init()
   @objc deinit
 }
+extension TrainingSDK.TrainingType : Swift.Equatable {}
+extension TrainingSDK.TrainingType : Swift.Hashable {}
 extension TrainingSDK.HCVimeoThumbnailQuality : Swift.Equatable {}
 extension TrainingSDK.HCVimeoThumbnailQuality : Swift.Hashable {}
 extension TrainingSDK.HCVimeoThumbnailQuality : Swift.RawRepresentable {}
